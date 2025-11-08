@@ -4,9 +4,15 @@
 
 Intégrez vos jeux et vos applications pour apprenants avec Educentre 
 
+**1. Intégrer le `bridge` Educentre dans votre application**
+
 ```html
 <script src="https://cdn.jsdelivr.net/gh/educentre-integration/libraries@latest/activity/bridge.min.js"></script>
 ```
+
+**2. Utiliser le `bridge` pour récupérer des informations ou envoyer des informations à Educentre**
+
+Vous pouvez utiliser le `bridge` dans l'espace apprenant comme dans l'espace contributeur. Utilisez le dans l'espace apprenant lorsque les apprenants utilisent votre activité pour récupérer, sauvegarder des données ou même envoyer une note. Vous pouvez également l'utiliser dans l'espace contributeur pour enregistrer des paramètres généraux qui seront appliqués à tous les apprenants.
 
 ```js
 const edac = new EducentreActivity();
