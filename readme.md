@@ -23,3 +23,7 @@ La progression et les données de l'activité sont stockées dans un espace de s
 Des fonctions sont disponibles pour offusquer et dé-offusquer les données.
 *   **Objectif** : Prévenir la triche.
 *   **Fonctionnement** : Si l'on utilise le `localStorage` par exemple, l'offuscation rend les données difficilement lisibles et modifiables par l'apprenant, sécurisant ainsi la progression ou le score.
+
+## Documentation
+Pour en savoir plus sur l'API, consultez la documentation officielle : [Educentre Activity Bridge](https://github.com/Educentre-Integration/libraries).
+
