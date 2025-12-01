@@ -1,53 +1,25 @@
-# Intégration avec Educentre
+# Activité Pédagogique
 
-### Activités pédagogiques
+## Structure d'une Activité Pédagogique
 
-Intégrez vos jeux et vos applications pour apprenants avec Educentre 
+Une activité pédagogique se compose de plusieurs pages, dont une est obligatoire et les autres optionnelles.
 
-**1. Intégrer le `bridge` Educentre dans votre application**
+### Partie Apprenant (Obligatoire)
+La forme minimale d'une activité est une page unique destinée à l'apprenant. C'est cette page qui s'affiche dans l'iframe. Elle constitue le cœur de l'activité, la partie "jeu" ou exercice interactif pour l'étudiant.
 
-```html
-<script src="https://cdn.jsdelivr.net/gh/educentre-integration/libraries@latest/activity/bridge.min.js"></script>
-```
+### Partie Contributeur (Optionnelle)
+Il existe deux pages supplémentaires destinées aux contributeurs (créateurs ou administrateurs de l'activité) :
 
-**2. Utiliser le `bridge` pour récupérer des informations ou envoyer des informations à Educentre**
+1.  **La Console** : Cette page permet au contributeur ou à l'admin de suivre la progression des apprenants en temps réel.
+2.  **La Configuration** : Cette page permet de configurer l'activité pédagogique. Elle est utile pour adapter une même activité (code source) à des contextes différents (par exemple, des exercices de code différents).
+    *   Elle permet de créer et sauvegarder une configuration spécifique (au format JSON) propre à la formation.
 
-Vous pouvez utiliser le `bridge` dans l'espace apprenant comme dans l'espace contributeur. Utilisez le dans l'espace apprenant lorsque les apprenants utilisent votre activité pour récupérer, sauvegarder des données ou même envoyer une note. Vous pouvez également l'utiliser dans l'espace contributeur pour enregistrer des paramètres généraux qui seront appliqués à tous les apprenants.
+## Stockage et Multijoueur
+La progression et les données de l'activité sont stockées dans un espace de stockage (Storage).
+*   **Stockage partagé** : Il n'y a qu'un seul stockage pour tous les apprenants d'un même groupe ou d'une même promotion.
+*   **Multijoueur** : Ce partage est essentiel pour les activités multijoueurs, où les actions d'un apprenant peuvent affecter les autres (par exemple, leurs points de vie).
 
-```js
-const edac = new EducentreActivity();
-
-/* ===================================================
-Espace APPRENANT : vous pouvez lire et enregistrer des données pour un groupe entier.
-Les réponses respectent l'interface suivante :
-interface EducentreStorageResponse {
-    token: string;
-    student: {
-        fullname?: string;
-    };
-    certificationStorage?: any;
-}
-*/
-edac.getStorage((response) => {
-    console.log(response);
-});
-
-const storage = ...;
-edac.saveStorage(storage, (response) => {
-    console.log(response);
-});
-
-// Espace APPRENANT : vous pouvez soumettre une note à une évaluation sur Educentre. La note doit être comprise entre 0 et 1.
-const score = 0.8; // Equivalent de 16 sur 20
-edac.sendScore(score);
-
-/* ===================================================
-Espace CONTRIBUTEUR : dans la console de l'activité pédagogique, vous pouvez enregistrer des paramètres généraux grâce à la configuration
-*/
-edac.getConfiguration((response) => {
-    console.log(response);
-});
-edac.saveConfiguration(configuration, (response) => {
-    console.log(response);
-});
-```
+## Sécurité et Offuscation
+Des fonctions sont disponibles pour offusquer et dé-offusquer les données.
+*   **Objectif** : Prévenir la triche.
+*   **Fonctionnement** : Si l'on utilise le `localStorage` par exemple, l'offuscation rend les données difficilement lisibles et modifiables par l'apprenant, sécurisant ainsi la progression ou le score.

@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo storage</title>
-    <script src="https://cdn.jsdelivr.net/gh/educentre-integration/libraries@latest/activity/bridge.min.js"></script>
+    <title>Demo configuration</title>
+    <script src="https://cdn.jsdelivr.net/gh/educentre-integration/libraries@v1.0/activity/bridge.min.js"></script>
 </head>
+
 <body>
-    <div>Le configuration est par activité pédagogique (le même pour tous les groupes)</div>
+    <h1>Configuration de l'activité pédagogique</h1>
+    <div>La configuration est par activité pédagogique (le même pour tous les groupes)</div>
     <textarea id="configuration"></textarea>
     <div>
         <button onclick="load()">Charger la configuration</button>
     </div>
     <div>
-        <button onclick="save()">Enregistrer le configuration</button>
+        <button onclick="save()">Enregistrer la configuration</button>
     </div>
 
     <script>
-        const eda = new EducentreActivity();
+        const eda = new EducentreActivityBridge();
 
         function load() {
             eda.getConfiguration((configuration) => {
@@ -38,4 +41,5 @@
 
     </script>
 </body>
+
 </html>

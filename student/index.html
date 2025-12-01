@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo activity</title>
-    <script src="https://cdn.jsdelivr.net/gh/educentre-integration/libraries@latest/activity/bridge.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/educentre-integration/libraries@v1.0/activity/bridge.min.js"></script>
 </head>
+
 <body>
+    <h1>Activité pédagogique</h1>
     <div id="student-fullname"></div>
     <div>
         <button onclick="start()">Récupérer le nom</button>
@@ -16,10 +19,10 @@
     </div>
 
     <script>
-        const edac = new EducentreActivity();
+        const edac = new EducentreActivityBridge();
 
         function start() {
-            edac.getStorage((response) => {
+            edac.getDatabase((response) => {
                 console.log(response);
                 document.querySelector('#student-fullname').innerHTML = response.student.fullname;
 
@@ -34,4 +37,5 @@
 
     </script>
 </body>
+
 </html>
